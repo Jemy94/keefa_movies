@@ -14,3 +14,5 @@
 /captures
 .externalNativeBuild
 .cxx
+app/libs/
+app/src/main/java/com/jemykeefa/keefamovies/data/
