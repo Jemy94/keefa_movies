@@ -3,8 +3,8 @@ package com.jemykeefa.keefamovies.data.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Movies(
-    @SerializedName("movies")
+class Response (
+    @SerializedName("data")
     @Expose
-    val movieList : List<Movie>
+    val data : Data
 )

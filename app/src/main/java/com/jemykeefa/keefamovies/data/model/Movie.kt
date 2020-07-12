@@ -1,11 +1,13 @@
 package com.jemykeefa.keefamovies.data.model
 
-import android.icu.text.CaseMap
-import java.util.*
-
 data class Movie(
-    val title_long : String? = null,
-    val small_cover_image : String? = null,
-    val rating  : String? = null,
-    val url : String? = null
+   val title : String?,
+   val small_cover_image : Int?,
+   val rating : Double?,
+   val viewPagerTitle : String?,
+   val year : Int?,
+   val url : String?,
+   val  runtime : Long?,
+   val genres : List<String>?,
+   val torrents : List<Torrents>
 )

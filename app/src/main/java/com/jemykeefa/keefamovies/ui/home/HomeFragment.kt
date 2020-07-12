@@ -11,8 +11,7 @@ import com.jemykeefa.keefamovies.ui.home.adapter.MovieRecyclerAdapter
 
 
 class HomeFragment : Fragment() {
-    lateinit var layoutManager: GridLayoutManager
-    lateinit var adapter: MovieRecyclerAdapter
+
 
     //this is just for assign xml layout to the fragment
     @Override
