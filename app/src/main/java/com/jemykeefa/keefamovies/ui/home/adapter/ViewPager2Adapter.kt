@@ -11,8 +11,8 @@ import com.jemykeefa.keefamovies.data.model.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 
-class ViewPagerAdapter(private val movieList: List<Movie>)  :
-    RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>(){
+class ViewPager2Adapter(private val movieList: List<Movie>)  :
+    RecyclerView.Adapter<ViewPager2Adapter.ViewPagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
         val itemView =
@@ -23,7 +23,7 @@ class ViewPagerAdapter(private val movieList: List<Movie>)  :
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         val currentItem = movieList[position]
         holder.image.setImageResource(currentItem.small_cover_image!!)
-        holder.title.text = movieList[position].viewPagerTitle
+        holder.title.text = movieList[position].title_long
     }
 
     override fun getItemCount(): Int {

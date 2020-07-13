@@ -4,7 +4,7 @@ data class Movie(
    val title : String?,
    val small_cover_image : Int?,
    val rating : Double?,
-   val viewPagerTitle : String?,
+   val title_long : String?,
    val year : Int?,
    val url : String?,
    val  runtime : Long?,
