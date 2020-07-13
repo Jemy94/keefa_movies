@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.jemykeefa.keefamovies"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -43,8 +43,8 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //rx
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

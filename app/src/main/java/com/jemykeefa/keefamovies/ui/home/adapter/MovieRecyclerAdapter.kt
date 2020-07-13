@@ -11,7 +11,6 @@ import com.jemykeefa.keefamovies.R
 import com.jemykeefa.keefamovies.data.model.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 import kotlinx.android.synthetic.main.item_viewpager.view.*
-import org.w3c.dom.Text
 
 class MovieRecyclerAdapter(private val movieList: List<Movie>)  :
     RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>(){
