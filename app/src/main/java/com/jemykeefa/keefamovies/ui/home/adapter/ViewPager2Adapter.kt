@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jemykeefa.keefamovies.R
-import com.jemykeefa.keefamovies.data.model.Movie
+import com.jemykeefa.keefamovies.data.model.model.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 
@@ -22,7 +22,7 @@ class ViewPager2Adapter(private val movieList: List<Movie>)  :
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         val currentItem = movieList[position]
-        holder.image.setImageResource(currentItem.small_cover_image!!)
+       // holder.image.setImageResource(currentItem.small_cover_image!!)
         holder.title.text = movieList[position].title_long
     }
 

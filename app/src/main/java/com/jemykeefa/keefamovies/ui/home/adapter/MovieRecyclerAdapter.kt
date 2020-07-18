@@ -8,34 +8,38 @@ import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
 import com.jemykeefa.keefamovies.R
-import com.jemykeefa.keefamovies.data.model.Movie
+import com.jemykeefa.keefamovies.data.model.model.Movie
+import com.jemykeefa.keefamovies.utils.extensions.load
 import kotlinx.android.synthetic.main.item_movie.view.*
 import kotlinx.android.synthetic.main.item_viewpager.view.*
 
-class MovieRecyclerAdapter(private val movieList: List<Movie>)  :
-    RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>(){
+class MovieRecyclerAdapter(private val movieList: List<Movie>) :
+    RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_movie,parent,false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
         return MovieViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val currentItem = movieList[position]
-        holder.image.setImageResource(currentItem.small_cover_image!!)
-        holder.title.text = movieList[position].title
+        currentItem.small_cover_image?.let { holder.image.load(it) }
+        holder.title.text = currentItem.title
+        holder.rating.text = currentItem.rating.toString()
+        holder.year.text = currentItem.year.toString()
+
     }
 
     override fun getItemCount(): Int {
         return movieList.size
     }
 
-    class MovieViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        var title : TextView = itemView.titleTV
-        var rating : TextView = itemView.ratingTV
-        var viewPagerTitle : TextView = itemView.viewPagerTextView
-        var year : TextView = itemView.yearTV
-        var image : ImageView = itemView.imageView
+    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var title: TextView = itemView.titleTV
+        var rating: TextView = itemView.ratingTV
+       // var viewPagerTitle: TextView = itemView.viewPagerTextView
+        var year: TextView = itemView.yearTV
+        var image: ImageView = itemView.imageView
     }
 }

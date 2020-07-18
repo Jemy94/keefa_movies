@@ -1,4 +1,4 @@
-package com.jemykeefa.keefamovies.data.model
+package com.jemykeefa.keefamovies.data.model.model
 
 data class Torrents (
     val url : String?,
