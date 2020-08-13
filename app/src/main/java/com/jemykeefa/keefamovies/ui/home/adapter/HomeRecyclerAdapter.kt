@@ -19,36 +19,44 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 class HomeRecyclerAdapter(private val movieList: List<Movie>) :
     RecyclerView.Adapter<HomeRecyclerAdapter.MovieViewHolder>() {
 
+    private var itemCallback: ((Movie) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieViewHolder(itemView).listen {position, type ->
-            val item = movieList.get(position)
-
-        }
-
+        return MovieViewHolder(itemView, itemCallback)
     }
+
+
+    fun setItemCallBack(itemCallback: (Movie?) -> Unit) {
+        this.itemCallback = itemCallback
+    }
+
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val currentItem = movieList[position]
-        currentItem.medium_cover_image?.let { holder.image.load(it) }
-        holder.title.text = currentItem.title
-        holder.rating.text = currentItem.rating.toString()
-        holder.year.text = currentItem.year.toString()
-
+        holder.bind(currentItem)
 
     }
 
-    override fun getItemCount(): Int {
-        return movieList.size
-    }
+    override fun getItemCount(): Int = movieList.size
 
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    class MovieViewHolder(itemView: View, private val itemCallback: ((Movie) -> Unit)?) :
+        RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.titleTV
         var rating: TextView = itemView.ratingTV
         var year: TextView = itemView.yearTV
         var image: ImageView = itemView.imageView
+        fun bind(movie: Movie) {
+            itemView.setOnClickListener { itemCallback?.invoke(movie) }
+            title.text = movie.title
+            rating.text = movie.rating.toString()
+            movie.medium_cover_image?.let { image.load(it) }
+            year.text = movie.year.toString()
+        }
 
     }
-
 }
+
+

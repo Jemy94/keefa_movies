@@ -1,12 +1,16 @@
 package com.jemykeefa.keefamovies.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.jemykeefa.keefamovies.R
 import com.jemykeefa.keefamovies.data.model.common.ResourceState.ERROR
 import com.jemykeefa.keefamovies.data.model.common.ResourceState.SUCCESS
@@ -16,6 +20,7 @@ import com.jemykeefa.keefamovies.di.component.AppComponent
 import com.jemykeefa.keefamovies.di.component.DaggerAppComponent
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeRecyclerAdapter
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeViewPagerAdapter
+import com.jemykeefa.keefamovies.utils.Constants
 import com.jemykeefa.keefamovies.utils.Constants.Error.GENERAL
 import com.jemykeefa.keefamovies.utils.extensions.toastLong
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,7 +30,6 @@ import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
-
     @Inject
     lateinit var homeViewModelFactory: HomeViewModelFactory
     private val viewModel: HomeViewModel by lazy {
@@ -34,6 +38,9 @@ class HomeFragment : Fragment() {
     }
     //dagger code
     lateinit var component: AppComponent
+
+    private val sharedPreferences by lazy {  requireActivity().getSharedPreferences(Constants.SHARED_PREFERENCE,
+        Context.MODE_PRIVATE)}
 
 
     //this is just for assign xml layout to the fragment
@@ -81,6 +88,14 @@ class HomeFragment : Fragment() {
                         viewPager.adapter = viewPagerAdapter
                         pageIndicatorView.count = viewPagerList.size
                         pageIndicatorView.selection = viewPager.currentItem
+
+                        adapter.setItemCallBack {movie ->
+
+                            val editor =  sharedPreferences.edit()
+                            movie?.id?.let { editor.putInt(Constants.MOVIE_ID, it).commit() }
+                            view.findNavController().navigate(R.id.action_homeFragment_to_tabLayoutFragment)
+
+                        }
 
                     }
                 }

@@ -12,9 +12,9 @@ class DetailsViewModelFactory @Inject constructor(
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailsViewModel::class.java)) {
-            return DetailsViewModelFactory(movieDetailsRepository) as T
+            return DetailsViewModel(movieDetailsRepository) as T
         }
-        throw IllegalArgumentException("Unknown class name need ${HomeViewModel::class.java.simpleName} instance")
+        throw IllegalArgumentException("Unknown class name need ${DetailsViewModel::class.java.simpleName} instance")
     }
 
 }

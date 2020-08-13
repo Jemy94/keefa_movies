@@ -9,15 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jemykeefa.keefamovies.R
 import com.jemykeefa.keefamovies.data.model.common.ResourceState
-import com.jemykeefa.keefamovies.data.model.model.Movie
 import com.jemykeefa.keefamovies.di.component.AppComponent
 import com.jemykeefa.keefamovies.di.component.DaggerAppComponent
-import com.jemykeefa.keefamovies.ui.home.adapter.HomeRecyclerAdapter
-import com.jemykeefa.keefamovies.ui.home.adapter.HomeViewPagerAdapter
 import com.jemykeefa.keefamovies.ui.moviedetails.suggestions.adapter.SuggestionsRecyclerAdapter
 import com.jemykeefa.keefamovies.utils.Constants
 import com.jemykeefa.keefamovies.utils.extensions.toastLong
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_suggestions.*
 import javax.inject.Inject
 
 class SuggestionsFragment : Fragment() {
@@ -46,7 +43,7 @@ class SuggestionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupInjection()
         getMovies()
-        observeMovies(view)
+        observeSuggestionsMovies(view)
     }
 
     //dagger code
@@ -60,16 +57,15 @@ class SuggestionsFragment : Fragment() {
         viewModel.getMovieSuggestions()
     }
 
-    private fun observeMovies(view: View) {
+    private fun observeSuggestionsMovies(view: View) {
         viewModel.movies.observe(viewLifecycleOwner, Observer { resource ->
             when (resource.state) {
                 ResourceState.LOADING -> {
                 }
                 ResourceState.SUCCESS -> {
-                    resource.data?.let { moviesResponse ->
-                        val adapter = SuggestionsRecyclerAdapter(moviesResponse.data.movies)
-                        recyclerView.adapter = adapter
-
+                    resource.data?.let { suggestionsMovie ->
+//                        val adapter = SuggestionsRecyclerAdapter(suggestionsMovie.data.movies)
+//                        suggestionGridView.adapter = adapter
 
                     }
                 }

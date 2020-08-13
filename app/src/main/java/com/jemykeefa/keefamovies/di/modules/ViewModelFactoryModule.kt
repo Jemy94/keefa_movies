@@ -18,21 +18,18 @@ class ViewModelFactoryModule {
     fun getHomeViewModelFactory(
         popularRepository: MoviesListRepository
     ): HomeViewModelFactory = HomeViewModelFactory(popularRepository)
+
     @Provides
     @Singleton
     fun getDetailsViewModelFactory(
-        popularRepository: DetailsRepository
-    ): DetailsViewModelFactory = DetailsViewModelFactory(popularRepository)
+        detailsRepository: DetailsRepository
+    ): DetailsViewModelFactory = DetailsViewModelFactory(detailsRepository)
+
     @Provides
     @Singleton
     fun getSuggestionsViewModelFactory(
-        popularRepository: SuggestionsRepository
-    ): SuggestionsViewModelFactory =
-        SuggestionsViewModelFactory(
-            popularRepository
-        )
-
-
+        suggestionRepository: SuggestionsRepository
+    ): SuggestionsViewModelFactory = SuggestionsViewModelFactory(suggestionRepository)
 
 
 }

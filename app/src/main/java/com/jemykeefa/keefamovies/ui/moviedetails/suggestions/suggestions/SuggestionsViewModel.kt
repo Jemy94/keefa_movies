@@ -35,7 +35,7 @@ class SuggestionsViewModel (private val popularRepository: SuggestionsRepository
                 )
             }, { throwable ->
                 _movies.setError(Constants.Error.GENERAL)
-                Log.e("HomeFragment", throwable.message ?: "unknown error")
+                Log.e("SuggestionFragment", throwable.message ?: "unknown error")
             })
             .addTo(compositeDisposable)
     }

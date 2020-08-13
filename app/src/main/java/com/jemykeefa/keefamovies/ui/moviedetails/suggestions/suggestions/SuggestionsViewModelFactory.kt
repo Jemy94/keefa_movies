@@ -12,7 +12,7 @@ class SuggestionsViewModelFactory @Inject constructor(
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SuggestionsViewModel::class.java)) {
-            return SuggestionsViewModelFactory(
+            return SuggestionsViewModel(
                 moviesSuggestionsRepository
             ) as T
         }

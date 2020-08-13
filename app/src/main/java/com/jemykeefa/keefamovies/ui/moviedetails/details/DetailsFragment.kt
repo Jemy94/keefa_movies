@@ -15,7 +15,9 @@ import com.jemykeefa.keefamovies.di.component.DaggerAppComponent
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeRecyclerAdapter
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeViewPagerAdapter
 import com.jemykeefa.keefamovies.utils.Constants
+import com.jemykeefa.keefamovies.utils.extensions.load
 import com.jemykeefa.keefamovies.utils.extensions.toastLong
+import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -64,18 +66,17 @@ class DetailsFragment :Fragment() {
                 ResourceState.LOADING -> {
                 }
                 ResourceState.SUCCESS -> {
-                    resource.data?.let { moviesResponse ->
-                        val adapter = HomeRecyclerAdapter(moviesResponse.data.movies)
-                        recyclerView.adapter = adapter
-                        val viewPagerList = mutableListOf<Movie>()
-                        for (index in 5..9){
-                            viewPagerList.add(moviesResponse.data.movies[index])
+                    resource.data?.let { detailsResponse ->
+                        val movie =   detailsResponse.detailsData.movieDetails
+                      movie.large_cover_image?.let { detailsBackgroundImage.load(it) }
+                      movie.medium_cover_image?.let { detailsSmallCoverImage.load(it) }
+                        detailTitleTextView.text = movie.title_long
+                        summaryTextView.text = movie.description_intro
+                        descriptionTextView.text = movie.description_full
+                        ratingTextDetail.text = movie.rating.toString()
+                        sizeTextView.text = movie.torrents?.get(0)?.size
+                        qualityTextView.text = movie.torrents?.get(0)?.quality
 
-                        }
-                        val viewPagerAdapter = HomeViewPagerAdapter(viewPagerList)
-                        viewPager.adapter = viewPagerAdapter
-                        pageIndicatorView.count = viewPagerList.size
-                        pageIndicatorView.selection = viewPager.currentItem
 
                     }
                 }

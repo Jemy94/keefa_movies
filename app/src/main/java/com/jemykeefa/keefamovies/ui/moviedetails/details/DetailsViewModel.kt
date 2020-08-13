@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jemykeefa.keefamovies.data.model.common.Resource
+import com.jemykeefa.keefamovies.data.model.model.MovieDetailsResponse
 import com.jemykeefa.keefamovies.data.model.model.MoviesListResponse
 import com.jemykeefa.keefamovies.data.model.reposirtory.DetailsRepository
 import com.jemykeefa.keefamovies.utils.Constants
@@ -19,9 +20,9 @@ import io.reactivex.schedulers.Schedulers
 class DetailsViewModel (private val popularRepository: DetailsRepository) : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
-    private val _movies = MutableLiveData<Resource<MoviesListResponse>>()
+    private val _movies = MutableLiveData<Resource<MovieDetailsResponse>>()
 
-    val movies: LiveData<Resource<MoviesListResponse>>
+    val movies: LiveData<Resource<MovieDetailsResponse>>
         get() = _movies
 
     fun getMovieDetils() {
@@ -35,7 +36,7 @@ class DetailsViewModel (private val popularRepository: DetailsRepository) : View
                 )
             }, { throwable ->
                 _movies.setError(Constants.Error.GENERAL)
-                Log.e("HomeFragment", throwable.message ?: "unknown error")
+                Log.e("DetailsFragment", throwable.message ?: "unknown error")
             })
             .addTo(compositeDisposable)
     }

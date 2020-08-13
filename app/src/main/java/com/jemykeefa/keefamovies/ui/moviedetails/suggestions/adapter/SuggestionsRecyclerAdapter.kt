@@ -23,7 +23,7 @@ class SuggestionsRecyclerAdapter (private val movieList: List<Movie>) :
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return movieList.size
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {

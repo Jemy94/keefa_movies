@@ -26,6 +26,8 @@ interface AppComponent {
     fun inject(homeFragment: HomeFragment)
 
     fun inject(movieDetailsFragment: TabLayoutFragment)
+
     fun inject(detailsFragment: DetailsFragment)
+
     fun inject(suggestionsFragment: SuggestionsFragment)
 }
