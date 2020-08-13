@@ -43,7 +43,7 @@ class Validator @Inject constructor(private val gson: Gson) {
                     Resource<T>(ResourceState.ERROR, message = Constants.Error.GENERAL)
                 }
             } catch (e: Exception) {
-                Log.d("Exception", e.message)
+                e.message?.let { Log.d("Exception", it) }
                 Resource<T>(ResourceState.ERROR, message = e.message)
             }
         } ?: Resource<T>(ResourceState.ERROR, message = Constants.Error.GENERAL)

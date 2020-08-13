@@ -8,4 +8,6 @@ import retrofit2.http.GET
 
 interface ApiInterface {
     @GET(Endpoints.MOVIES_LIST) fun getMoviesList() : Single<Response<MoviesListResponse>>
+    @GET(Endpoints.MOVIE_DETAILS) fun getMovieDetails() : Single<Response<MoviesListResponse>>
+    @GET(Endpoints.MOVIE_SUGGESTIONS) fun getMovieSuggestions () : Single<Response<MoviesListResponse>>
 }

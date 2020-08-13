@@ -1,4 +1,4 @@
-package com.jemykeefa.keefamovies.ui.moviedetails.details
+package com.jemykeefa.keefamovies.ui.moviedetails.suggestions.suggestions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,19 +14,21 @@ import com.jemykeefa.keefamovies.di.component.AppComponent
 import com.jemykeefa.keefamovies.di.component.DaggerAppComponent
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeRecyclerAdapter
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeViewPagerAdapter
+import com.jemykeefa.keefamovies.ui.moviedetails.suggestions.adapter.SuggestionsRecyclerAdapter
 import com.jemykeefa.keefamovies.utils.Constants
 import com.jemykeefa.keefamovies.utils.extensions.toastLong
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
-class DetailsFragment :Fragment() {
+class SuggestionsFragment : Fragment() {
 
     @Inject
-    lateinit var detailsViewModelFactory: DetailsViewModelFactory
-    private val viewModel: DetailsViewModel by lazy {
-        ViewModelProvider(this, detailsViewModelFactory)
-            .get(DetailsViewModel::class.java)
+    lateinit var suggestionsViewModelFactory: SuggestionsViewModelFactory
+    private val viewModel: SuggestionsViewModel by lazy {
+        ViewModelProvider(this, suggestionsViewModelFactory)
+            .get(SuggestionsViewModel::class.java)
     }
+
     //dagger code
     lateinit var component: AppComponent
 
@@ -37,7 +39,7 @@ class DetailsFragment :Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_details, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_suggestions, container, false)
 
     //this is similar to onCreate in Activity
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,7 +57,7 @@ class DetailsFragment :Fragment() {
     }
 
     private fun getMovies() {
-        viewModel.getMovieDetils()
+        viewModel.getMovieSuggestions()
     }
 
     private fun observeMovies(view: View) {
@@ -65,17 +67,9 @@ class DetailsFragment :Fragment() {
                 }
                 ResourceState.SUCCESS -> {
                     resource.data?.let { moviesResponse ->
-                        val adapter = HomeRecyclerAdapter(moviesResponse.data.movies)
+                        val adapter = SuggestionsRecyclerAdapter(moviesResponse.data.movies)
                         recyclerView.adapter = adapter
-                        val viewPagerList = mutableListOf<Movie>()
-                        for (index in 5..9){
-                            viewPagerList.add(moviesResponse.data.movies[index])
 
-                        }
-                        val viewPagerAdapter = HomeViewPagerAdapter(viewPagerList)
-                        viewPager.adapter = viewPagerAdapter
-                        pageIndicatorView.count = viewPagerList.size
-                        pageIndicatorView.selection = viewPager.currentItem
 
                     }
                 }

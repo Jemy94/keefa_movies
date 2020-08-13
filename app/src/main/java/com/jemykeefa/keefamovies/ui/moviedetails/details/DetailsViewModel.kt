@@ -1,4 +1,4 @@
-package com.jemykeefa.keefamovies.ui.home
+package com.jemykeefa.keefamovies.ui.moviedetails.details
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jemykeefa.keefamovies.data.model.common.Resource
 import com.jemykeefa.keefamovies.data.model.model.MoviesListResponse
-import com.jemykeefa.keefamovies.data.model.reposirtory.MoviesListRepository
+import com.jemykeefa.keefamovies.data.model.reposirtory.DetailsRepository
 import com.jemykeefa.keefamovies.utils.Constants
 import com.jemykeefa.keefamovies.utils.extensions.addTo
 import com.jemykeefa.keefamovies.utils.extensions.setError
@@ -16,7 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class HomeViewModel(private val popularRepository: MoviesListRepository) : ViewModel() {
+class DetailsViewModel (private val popularRepository: DetailsRepository) : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
     private val _movies = MutableLiveData<Resource<MoviesListResponse>>()
@@ -24,8 +24,8 @@ class HomeViewModel(private val popularRepository: MoviesListRepository) : ViewM
     val movies: LiveData<Resource<MoviesListResponse>>
         get() = _movies
 
-    fun getMovies() {
-        popularRepository.getMoviesList()
+    fun getMovieDetils() {
+        popularRepository.getMovieDetails()
             .doOnSubscribe { _movies.setLoading() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

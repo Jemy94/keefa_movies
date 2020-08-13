@@ -18,5 +18,5 @@
         android:id="@+id/detailsFragment"
         android:name="com.jemykeefa.keefamovies.ui.moviedetails.details.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_mmovie_details"/>
+        tools:layout="@layout/fragment_tablayout"/>
 </navigation>

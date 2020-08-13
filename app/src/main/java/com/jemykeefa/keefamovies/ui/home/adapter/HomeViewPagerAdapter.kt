@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jemykeefa.keefamovies.R
 import com.jemykeefa.keefamovies.data.model.model.Movie
-import kotlinx.android.synthetic.main.item_movie.view.*
+import com.jemykeefa.keefamovies.utils.extensions.load
+import kotlinx.android.synthetic.main.item_viewpager.view.*
 
 
-class ViewPager2Adapter(private val movieList: List<Movie>)  :
-    RecyclerView.Adapter<ViewPager2Adapter.ViewPagerViewHolder>(){
+class HomeViewPagerAdapter(private val movieList: List<Movie>)  :
+    RecyclerView.Adapter<HomeViewPagerAdapter.ViewPagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
         val itemView =
@@ -22,8 +23,9 @@ class ViewPager2Adapter(private val movieList: List<Movie>)  :
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         val currentItem = movieList[position]
-       // holder.image.setImageResource(currentItem.small_cover_image!!)
-        holder.title.text = movieList[position].title_long
+        holder.title.text = currentItem.title_long
+        currentItem.large_cover_image?.let { holder.image.load(it) }
+
     }
 
     override fun getItemCount(): Int {
@@ -32,8 +34,8 @@ class ViewPager2Adapter(private val movieList: List<Movie>)  :
 
 
     class ViewPagerViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView) {
-        var title : TextView = itemView.titleTV
-        var image : ImageView = itemView.imageView
+        var title : TextView = itemView.viewPagerTextView
+        var image : ImageView = itemView.viewPagerImageView
 
     }
 }
