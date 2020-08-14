@@ -1,5 +1,6 @@
 package com.jemykeefa.keefamovies.ui.moviedetails.details
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.jemykeefa.keefamovies.di.component.DaggerAppComponent
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeRecyclerAdapter
 import com.jemykeefa.keefamovies.ui.home.adapter.HomeViewPagerAdapter
 import com.jemykeefa.keefamovies.utils.Constants
+import com.jemykeefa.keefamovies.utils.Constants.MOVIE_ID
 import com.jemykeefa.keefamovies.utils.extensions.load
 import com.jemykeefa.keefamovies.utils.extensions.toastLong
 import kotlinx.android.synthetic.main.fragment_details.*
@@ -31,6 +33,12 @@ class DetailsFragment :Fragment() {
     }
     //dagger code
     lateinit var component: AppComponent
+
+
+    private val sharedPreferences by lazy {  requireActivity().getSharedPreferences(Constants.SHARED_PREFERENCE,
+        Context.MODE_PRIVATE)}
+
+
 
 
     //this is just for assign xml layout to the fragment
@@ -57,7 +65,8 @@ class DetailsFragment :Fragment() {
     }
 
     private fun getMovies() {
-        viewModel.getMovieDetils()
+        val id = sharedPreferences.getLong(Constants.MOVIE_ID,1)
+        viewModel.getMovieDetils(id)
     }
 
     private fun observeMovies(view: View) {

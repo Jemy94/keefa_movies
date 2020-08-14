@@ -92,7 +92,7 @@ class HomeFragment : Fragment() {
                         adapter.setItemCallBack {movie ->
 
                             val editor =  sharedPreferences.edit()
-                            movie?.id?.let { editor.putInt(Constants.MOVIE_ID, it).commit() }
+                            movie?.id?.let { editor.putLong(Constants.MOVIE_ID, it).commit() }
                             view.findNavController().navigate(R.id.action_homeFragment_to_tabLayoutFragment)
 
                         }

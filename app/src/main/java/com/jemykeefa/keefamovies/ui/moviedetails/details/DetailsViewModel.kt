@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jemykeefa.keefamovies.data.model.common.Resource
 import com.jemykeefa.keefamovies.data.model.model.MovieDetailsResponse
-import com.jemykeefa.keefamovies.data.model.model.MoviesListResponse
 import com.jemykeefa.keefamovies.data.model.reposirtory.DetailsRepository
 import com.jemykeefa.keefamovies.utils.Constants
 import com.jemykeefa.keefamovies.utils.extensions.addTo
@@ -20,22 +19,22 @@ import io.reactivex.schedulers.Schedulers
 class DetailsViewModel (private val popularRepository: DetailsRepository) : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
-    private val _movies = MutableLiveData<Resource<MovieDetailsResponse>>()
+    private val _movieDetails = MutableLiveData<Resource<MovieDetailsResponse>>()
 
     val movies: LiveData<Resource<MovieDetailsResponse>>
-        get() = _movies
+        get() = _movieDetails
 
-    fun getMovieDetils() {
-        popularRepository.getMovieDetails()
-            .doOnSubscribe { _movies.setLoading() }
+    fun getMovieDetils(movieId : Long) {
+        popularRepository.getDetails(movieId)
+            .doOnSubscribe { _movieDetails.setLoading() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ moviesResource ->
-                moviesResource?.data?.let { _movies.setSuccess(it) } ?: _movies.setError(
+                moviesResource?.data?.let { _movieDetails.setSuccess(it) } ?: _movieDetails.setError(
                     moviesResource.message
                 )
             }, { throwable ->
-                _movies.setError(Constants.Error.GENERAL)
+                _movieDetails.setError(Constants.Error.GENERAL)
                 Log.e("DetailsFragment", throwable.message ?: "unknown error")
             })
             .addTo(compositeDisposable)

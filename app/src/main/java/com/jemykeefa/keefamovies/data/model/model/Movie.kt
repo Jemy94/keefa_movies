@@ -1,7 +1,7 @@
 package com.jemykeefa.keefamovies.data.model.model
 
 data class Movie(
-    val id: Int?,
+    val id: Long?,
     val title: String?,
     val large_cover_image: String? = "",
     val medium_cover_image: String? = "",

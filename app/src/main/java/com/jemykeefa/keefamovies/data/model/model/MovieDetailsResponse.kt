@@ -15,6 +15,7 @@ data class MovieDetailsResponse(
         val movieDetails: MovieDetails
     ) {
         data class MovieDetails(
+            val id : Long?,
             val url: String? = "",
             val large_cover_image: String? = "",
             val medium_cover_image: String? = "",
