@@ -22,6 +22,7 @@ class CategoryAdapter(context: Context,fm : FragmentManager) : FragmentPagerAdap
         }
     }
 
+
     override fun getCount(): Int {
         return 2
     }
@@ -34,5 +35,7 @@ class CategoryAdapter(context: Context,fm : FragmentManager) : FragmentPagerAdap
                 else -> mContext?.getString(R.string.details_fragment)
             }
         }
+
+
 
 }

@@ -2,6 +2,7 @@ package com.jemykeefa.keefamovies.ui.moviedetails.details
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,22 @@ class DetailsFragment :Fragment() {
         setupInjection()
         getMovies()
         observeMovies(view)
+        Log.d("details fragment","details create")
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("details fragment","on start details")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("details fragment","on resume details")
+
+    }
+
+
 
     //dagger code
     private fun setupInjection() {
@@ -104,4 +120,5 @@ class DetailsFragment :Fragment() {
             }
         })
     }
+
 }

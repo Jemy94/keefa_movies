@@ -19,7 +19,7 @@ class TabLayoutFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View?= inflater.inflate(R.layout.fragment_tablayout, container, false)
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val adapter = CategoryAdapter(requireActivity(),requireActivity().supportFragmentManager)
+    val adapter = CategoryAdapter(requireActivity(),childFragmentManager)
     viewpager.adapter =adapter
     tabs.setupWithViewPager(viewpager)
     Log.d("tab fragment","tab on creat")

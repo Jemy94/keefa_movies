@@ -3,6 +3,7 @@ package com.jemykeefa.keefamovies.ui.home
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,6 +59,19 @@ class HomeFragment : Fragment() {
         setupInjection()
         getMovies()
         observeMovies(view)
+        Log.d("home fragment","home create")
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.d("home fragment","on start home")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("home fragment","on resume home")
+
+
     }
 
     //dagger code
@@ -102,6 +116,7 @@ class HomeFragment : Fragment() {
                             val editor =  sharedPreferences.edit()
                             movie?.id?.let { editor.putLong(Constants.MOVIE_ID, it).commit() }
                             view.findNavController().navigate(R.id.action_homeFragment_to_tabLayoutFragment)
+                            requireActivity().supportFragmentManager
 
                         }
 
