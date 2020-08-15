@@ -19,7 +19,7 @@ class SuggestionsRecyclerAdapter (private val movieList: List<Movie>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return SuggestionsRecyclerAdapter.MovieViewHolder(itemView)
+        return MovieViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {

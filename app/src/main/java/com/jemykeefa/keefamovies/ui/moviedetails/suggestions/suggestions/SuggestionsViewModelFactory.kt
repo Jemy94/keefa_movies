@@ -16,7 +16,7 @@ class SuggestionsViewModelFactory @Inject constructor(
                 moviesSuggestionsRepository
             ) as T
         }
-        throw IllegalArgumentException("Unknown class name need ${HomeViewModel::class.java.simpleName} instance")
+        throw IllegalArgumentException("Unknown class name need ${SuggestionsViewModel::class.java.simpleName} instance")
     }
 
 }

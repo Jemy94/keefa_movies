@@ -1,6 +1,7 @@
 package com.jemykeefa.keefamovies.ui.moviedetails
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,22 @@ class TabLayoutFragment : Fragment() {
     val adapter = CategoryAdapter(requireActivity(),requireActivity().supportFragmentManager)
     viewpager.adapter =adapter
     tabs.setupWithViewPager(viewpager)
+    Log.d("tab fragment","tab on creat")
+
 
     }
+
+  override fun onStart() {
+    super.onStart()
+    Log.d("tab fragment","on start")
+
+  }
+
+  override fun onResume() {
+    super.onResume()
+    Log.d("tab fragment","on resume")
+
+  }
 
 
 }

@@ -12,8 +12,8 @@ class SuggestionsRepository @Inject constructor(
     private val validator: Validator
 ) {
 
-    fun getMovieSuggestions(): Single<Resource<MoviesListResponse>> {
-        return apiInterface.getMovieSuggestions()
+    fun getMovieSuggestions(movieId : Long): Single<Resource<MoviesListResponse>> {
+        return apiInterface.getMovieSuggestions(movieId)
             .map { validator.validateResponse(it) }
             .map { Resource(it.state, if (it.data == null) null else it.data, it.message) }
     }

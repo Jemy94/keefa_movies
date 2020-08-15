@@ -24,8 +24,8 @@ class SuggestionsViewModel (private val popularRepository: SuggestionsRepository
     val movies: LiveData<Resource<MoviesListResponse>>
         get() = _movies
 
-    fun getMovieSuggestions() {
-        popularRepository.getMovieSuggestions()
+    fun getMovieSuggestions(movieId : Long) {
+        popularRepository.getMovieSuggestions(movieId)
             .doOnSubscribe { _movies.setLoading() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

@@ -22,6 +22,6 @@ interface ApiInterface {
 
     @GET(Endpoints.MOVIE_SUGGESTIONS)
     fun getMovieSuggestions (
-
+        @Query("movie_id") movieId : Long
     ): Single<Response<MoviesListResponse>>
 }

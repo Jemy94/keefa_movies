@@ -15,18 +15,16 @@
             android:id="@+id/separator1"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
             android:background="@drawable/genres_box"
             app:layout_constraintBottom_toBottomOf="@id/guideLine2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideLine2" />
+            app:layout_constraintTop_toBottomOf="@id/ratingStar" />
 
         <ImageView
             android:id="@+id/detailsBackgroundImage"
             android:layout_width="0dp"
-            android:layout_height="320dp"
+            android:layout_height="300dp"
             android:background="@drawable/gradient_bg"
             android:contentDescription="@null"
             tools:src="@drawable/fast"
@@ -46,7 +44,6 @@
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/detailsBackgroundImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="12 angery men " />
 
@@ -87,53 +84,49 @@
             app:layout_constraintTop_toBottomOf="@+id/separator1" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/genres_box"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/comedy"
             app:layout_constraintStart_toStartOf="@+id/guideLine"
-            app:layout_constraintTop_toTopOf="@+id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/detailsSmallCoverImage"
             tools:text="Action" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/Drama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/genres_box"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideLine2"
+            app:layout_constraintTop_toTopOf="@+id/detailsSmallCoverImage"
             tools:text="Drama" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/comedy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/genres_box"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toTopOf="@+id/separator1"
+            app:layout_constraintEnd_toStartOf="@+id/History"
+            app:layout_constraintTop_toTopOf="@+id/detailsSmallCoverImage"
             tools:text="Comedy" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/History"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/genres_box"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/separator1"
+            app:layout_constraintEnd_toStartOf="@+id/Drama"
+            app:layout_constraintTop_toTopOf="@+id/detailsSmallCoverImage"
             tools:text="History" />
 
         <TextView
@@ -141,12 +134,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/arsenal"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideLine"
-            app:layout_constraintTop_toBottomOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/Drama"
             tools:text="A font family is a set of font files along with its style and weight details. In Android, you can create a new font family as an XML resource and access it as a single unit, instead of referencing each style" />
 
         <View
@@ -159,7 +152,7 @@
             app:layout_constraintBottom_toBottomOf="@id/guideLine3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideLine3" />
+            app:layout_constraintTop_toBottomOf="@id/detailsSmallCoverImage" />
 
         <TextView
             android:id="@+id/sizeTextView"

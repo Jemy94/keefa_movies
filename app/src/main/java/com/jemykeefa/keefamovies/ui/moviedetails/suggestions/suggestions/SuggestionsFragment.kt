@@ -1,5 +1,6 @@
 package com.jemykeefa.keefamovies.ui.moviedetails.suggestions.suggestions
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,10 @@ class SuggestionsFragment : Fragment() {
     //dagger code
     lateinit var component: AppComponent
 
+    private  val sharedPreferences by lazy {  requireActivity().getSharedPreferences(Constants.SHARED_PREFERENCE,
+        Context.MODE_PRIVATE)}
+
+
 
     //this is just for assign xml layout to the fragment
     @Override
@@ -54,7 +59,8 @@ class SuggestionsFragment : Fragment() {
     }
 
     private fun getMovies() {
-        viewModel.getMovieSuggestions()
+        val id = sharedPreferences.getLong(Constants.MOVIE_ID,1)
+        viewModel.getMovieSuggestions(id)
     }
 
     private fun observeSuggestionsMovies(view: View) {
@@ -64,8 +70,8 @@ class SuggestionsFragment : Fragment() {
                 }
                 ResourceState.SUCCESS -> {
                     resource.data?.let { suggestionsMovie ->
-//                        val adapter = SuggestionsRecyclerAdapter(suggestionsMovie.data.movies)
-//                        suggestionGridView.adapter = adapter
+                     val adapter = SuggestionsRecyclerAdapter(suggestionsMovie.data.movies)
+                        suggestionGridView.adapter = adapter
 
                     }
                 }

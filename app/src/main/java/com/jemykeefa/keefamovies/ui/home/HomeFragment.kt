@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.jemykeefa.keefamovies.R
 import com.jemykeefa.keefamovies.data.model.common.ResourceState.ERROR
 import com.jemykeefa.keefamovies.data.model.common.ResourceState.SUCCESS
@@ -87,7 +88,14 @@ class HomeFragment : Fragment() {
                         val viewPagerAdapter = HomeViewPagerAdapter(viewPagerList)
                         viewPager.adapter = viewPagerAdapter
                         pageIndicatorView.count = viewPagerList.size
-                        pageIndicatorView.selection = viewPager.currentItem
+                        viewPager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+                            override fun onPageSelected(position: Int) {
+
+                         pageIndicatorView.selection = position
+                                super.onPageSelected(position)
+                            }
+                        })
+
 
                         adapter.setItemCallBack {movie ->
 

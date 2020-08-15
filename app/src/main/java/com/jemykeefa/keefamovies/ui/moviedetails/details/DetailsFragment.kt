@@ -76,19 +76,24 @@ class DetailsFragment :Fragment() {
                 }
                 ResourceState.SUCCESS -> {
                     resource.data?.let { detailsResponse ->
-                        val movie =   detailsResponse.detailsData.movieDetails
-                      movie.large_cover_image?.let { detailsBackgroundImage.load(it) }
-                      movie.medium_cover_image?.let { detailsSmallCoverImage.load(it) }
+                        val movie = detailsResponse.detailsData.movieDetails
+                        movie.large_cover_image?.let { detailsBackgroundImage.load(it) }
+                        movie.medium_cover_image?.let { detailsSmallCoverImage.load(it) }
                         detailTitleTextView.text = movie.title_long
                         summaryTextView.text = movie.description_intro
                         descriptionTextView.text = movie.description_full
                         ratingTextDetail.text = movie.rating.toString()
                         sizeTextView.text = movie.torrents?.get(0)?.size
                         qualityTextView.text = movie.torrents?.get(0)?.quality
-
-
+                        val generes = detailsResponse.detailsData.movieDetails.genres
+//                       action.text = generes?.get(0) ?: "unknown"
+//                        Drama.text = generes?.get(1) ?: "unknown"
+//                        History.text = generes?.get(2) ?: "unknown"
+//                        comedy.text = generes?.get(3) ?: "unknown"
                     }
                 }
+
+
                 ResourceState.ERROR -> {
                     resource.message?.let { msg ->
                         when (msg) {
